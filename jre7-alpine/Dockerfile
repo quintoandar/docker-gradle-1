@@ -3,18 +3,12 @@ FROM openjdk:7-jre-alpine
 CMD ["gradle"]
 
 ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 4.10
+ENV GRADLE_VERSION 4.10.2
 
-ARG GRADLE_DOWNLOAD_SHA256=248cfd92104ce12c5431ddb8309cf713fe58de8e330c63176543320022f59f18
+ARG GRADLE_DOWNLOAD_SHA256=b49c6da1b2cb67a0caf6c7480630b51c70a11ca2016ff2f555eaeda863143a29
 RUN set -o errexit -o nounset \
-	&& echo "Installing build dependencies" \
-	&& apk add --no-cache --virtual .build-deps \
-		ca-certificates \
-		openssl \
-		unzip \
-	\
 	&& echo "Downloading Gradle" \
-	&& wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+	&& wget -qO gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
 	\
 	&& echo "Checking download hash" \
 	&& echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum -c - \
@@ -25,8 +19,6 @@ RUN set -o errexit -o nounset \
 	&& mkdir /opt \
 	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
 	&& ln -s "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
-	\
-	&& apk del .build-deps \
 	\
 	&& echo "Adding gradle user and group" \
 	&& addgroup -S -g 1000 gradle \

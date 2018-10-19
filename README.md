@@ -30,6 +30,12 @@
 * [jre10](https://github.com/keeganwitt/docker-gradle/blob/master/jre10/Dockerfile)
 * [jre10-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre10-slim/Dockerfile)
 
+* [jdk11](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11/Dockerfile)
+* [jdk11-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jdk11-slim/Dockerfile)
+
+* [jre11](https://github.com/keeganwitt/docker-gradle/blob/master/jre11/Dockerfile)
+* [jre11-slim](https://github.com/keeganwitt/docker-gradle/blob/master/jre11-slim/Dockerfile)
+
 ## What is Gradle?
 
 [Gradle](https://gradle.org/) is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing web sites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.
@@ -57,18 +63,9 @@ docker run --rm -v gradle-cache:/home/gradle/.gradle -v "$PWD":/home/gradle/proj
 
 ## Instructions for a new Gradle release
 
-1. Change `ENV GRADLE_VERSION` in all Dockerfiles to new version number.
-1. Download the binary zip.
-1. Run `sha256sum` on the above zip and change the `ARG GRADLE_DOWNLOAD_SHA256` in all Dockerfiles to new sha.
-1. Update _.travis.yml_.
+1. Run `update.sh <new Gradle version>`.
+1. Commit and push the changes.
 1. Update [official-images](https://github.com/docker-library/official-images) (and [docs](https://github.com/docker-library/docs) if appropriate).
-
-### Prerequisites
-
-* Docker
-* sha256sum
-
-**Note: Java 9 support is experimental**
 
 ---
 ![Travis Build Status](https://travis-ci.org/keeganwitt/docker-gradle.svg?branch=master)
