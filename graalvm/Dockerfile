@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/graalvm-ce:21.0.0
+FROM springci/graalvm-ce:master-java11
 
 CMD ["gradle"]
 
@@ -24,7 +24,6 @@ RUN apt-get update \
         fontconfig \
         unzip \
         wget \
-        \
         bzr \
         git \
         mercurial \
