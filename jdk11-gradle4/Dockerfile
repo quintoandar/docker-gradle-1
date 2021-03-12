@@ -3,7 +3,7 @@ FROM openjdk:11-jdk
 CMD ["gradle"]
 
 ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 5.6.1
+ENV GRADLE_VERSION 4.10.3
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -11,7 +11,7 @@ RUN apt-get update && \
         wget && \
     rm -rf /var/lib/apt/lists/*
 
-ARG GRADLE_DOWNLOAD_SHA256=0986244820e4a35d32d91df2ec4b768b5ba5d6c8246753794f85159f9963ec12
+ARG GRADLE_DOWNLOAD_SHA256=8626cbf206b4e201ade7b87779090690447054bc93f052954c78480fa6ed186e
 RUN set -o errexit -o nounset \
     && echo "Downloading Gradle" \
     && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
